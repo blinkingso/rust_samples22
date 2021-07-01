@@ -1,0 +1,21 @@
+[package]
+name = "rust-samples"
+version = "0.1.0"
+edition = "2018"
+# 元数据定义
+license = "MIT"
+description = "健身计划"
+authors = ["lewis<yaphets.andrew@gmail.com>"]
+
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.4"
+
+# 通过配置opt-level设置编译的优化层次, release默认为3, 编译优化.
+[profile.dev]
+opt-level = 0
+[profile.release]
+opt-level = 3

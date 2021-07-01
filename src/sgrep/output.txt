@@ -1,0 +1,1 @@
+我们需要向search函数中传入config.query的值，以及run函数从文件中读取的contents文本。

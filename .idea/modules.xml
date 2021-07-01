@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/healthy/healthy.iml" filepath="$PROJECT_DIR$/healthy/healthy.iml" />
       <module fileurl="file://$PROJECT_DIR$/rust-samples.iml" filepath="$PROJECT_DIR$/rust-samples.iml" />
     </modules>
   </component>

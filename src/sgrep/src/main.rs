@@ -1,37 +1,35 @@
 use std::env;
-use std::fs;
+use std::process;
+
+use sgrep::Config;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let config = Config::new(env::args()).unwrap_or_else(|err| {
+        eprintln!("Problem parsing arguments: {}", err);
+        process::exit(1);
+    });
 
-    let config = Config::new(&args).map_err(|error| {
-        println!("{}", error);
-        return;
-    }).unwrap();
+    // run(config).unwrap_or_else(|err| {
+    //         // Error 实现了Display trait
+    //         println!("查询错误: {}", err);
+    //         process::exit(1);
+    //     });
+    if let Err(e) = sgrep::run(config) {
+        eprintln!("查询错误: {}", e);
 
-    println!("在文件{}中搜索: {}", &config.query, &config.filename);
-
-    let contents = fs::read_to_string(&config.filename)
-        .expect("文件读取失败!");
-
-    println!("读取到文本: {}", &contents);
-}
-
-struct Config {
-    query: String,
-    filename: String,
-}
-
-impl Config {
-    fn new(args: &[String]) -> Result<Config, String> {
-        if args.len() < 3 {
-            return Err(format!("命令行参数个数错误!!!, 需要{}个, 传入个数: {}", 2, args.len() - 1));
-        }
-
-        // clone new arguments
-        let query = args[1].clone();
-        let filename = args[2].clone();
-
-        Ok(Config { query, filename })
+        process::exit(1);
     }
+}
+
+///
+/// 基本注释
+///# examples 文档注释
+///
+/// ```
+/// let a: u32 = 12;
+/// ```
+///
+///
+pub fn add_one(x: i32) -> i32 {
+    x * 32
 }
